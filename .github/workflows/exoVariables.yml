@@ -1,0 +1,19 @@
+name: Afficher date actuelle
+
+on:
+  push:
+
+jobs:
+  date_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer la date actuelle
+        id: time
+        uses: josStorer/get-current-time@v2
+
+      - name: Afficher la date au format français
+        run: |
+          DATE_FR=$(date -d "${{ steps.time.outputs.time }}" +"%d/%m/%Y")
+          echo "Date actuelle (format français) : $DATE_FR"
+
